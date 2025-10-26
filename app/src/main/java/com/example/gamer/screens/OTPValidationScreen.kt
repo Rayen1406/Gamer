@@ -2,21 +2,27 @@ package com.example.gamer.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.gamer.ui.theme.GamerTheme
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OTPValidationScreen() {
+fun OTPValidationScreen(navController: NavController) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
@@ -24,7 +30,29 @@ fun OTPValidationScreen() {
     var otpValue by remember { mutableStateOf(List(4) { "" }) }
 
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) }
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        topBar = {
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.background,
+                    titleContentColor = MaterialTheme.colorScheme.primary,
+                ),
+                title = {
+                    Text("")
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClick = { navController.popBackStack() },
+                        colors = IconButtonDefaults.iconButtonColors(
+                            contentColor = MaterialTheme.colorScheme.primary)) {
+                        Icon(imageVector = Icons.Filled.ChevronLeft,
+                            contentDescription = "Back")
+
+                    }
+                }
+            )
+        }
+
     ) { paddingValues ->
         Box(
             modifier = Modifier
@@ -116,6 +144,6 @@ fun OTPValidationScreen() {
 @Composable
 fun OTPValidationScreenPreview() {
     GamerTheme {
-        OTPValidationScreen()
+        OTPValidationScreen(navController = rememberNavController())
     }
 }

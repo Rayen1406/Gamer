@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">Gamer</string>
+
+    <string name="LIMBO">LIMBO</string>
+    <string name="MADWORLD">MADWORLD</string>
+    <string name="NF">NEED FOR SPEED: MOST WANTED</string>
+    <string name="DRIVER">DRIVER</string>
+    <string name="GTA">GRAND THEFT AUTO</string>
+    <string name="GT4">GRAN TURISMO 4</string>
+
+    <string name="gamePlatform1">PC / XBOX 360 / PS3</string>
+    <string name="gamePlatform2">Nintendo Wii</string>
+    <string name="gamePlatform3">PS Vita</string>
+    <string name="gamePlatform4">PlayStation</string>
+    <string name="gamePlatform5">PC CD-ROM</string>
+    <string name="gamePlatform6">PlayStation 2</string>
+
+    <string name="gamePrice1">$9.99</string>
+    <string name="gamePrice2">$19.99</string>
+    <string name="gamePrice3">$29.99</string>
+    <string name="gamePrice4">$14.99</string>
+    <string name="gamePrice5">$4.99</string>
+    <string name="gamePrice6">$19.99</string>
+
+
+    <string name="news1">Need for Speed: Most Wanted (2012)</string>
+    <string name="news2">Driver (1999)</string>
+    <string name="news3">Grand Theft Auto (1997)</string>
+    <string name="news4">Limbo (2010)</string>
+    <string name="news5">MadWorld (2009)</string>
+    <string name="news6">Gran Turismo 4 (2004)</string>
+
+    <string name="newsDesc1">The game focuses on open-world racing and police chases in Fairhaven City with no central story. The objective is to out-drive and wreck 10 elite racers on the Most Wanted list to steal their cars and earn the title of the most wanted.</string>
+    <string name="newsDesc2">Players assume the role of John Tanner, an undercover NYPD detective and former racing driver, who must infiltrate a major crime syndicate by working as their skilled getaway driver in four classic American cities: Miami, San Francisco, Los Angeles, and New York.</string>
+    <string name="newsDesc3">This original entry in the series places the player as an unnamed criminal building their reputation by carrying out missions for various crime syndicates across three fictional cities: Liberty City, San Andreas, and Vice City, with the ultimate goal of earning a high score (millions of points).</string>
+    <string name="newsDesc4">A nameless boy awakens in a dark, monochrome forest on the edge of hell (Limbo) and must navigate a dangerous world of puzzles, traps, and hostile characters while searching for his missing sister. The narrative is minimalist, leaving the meaning ambiguous.</string>
+    <string name="newsDesc5">The game is a violent, stylized, black-and-white gladiatorial game show called "DeathWatch," where contestant Jack Cayman enters a quarantined city to compete for a cash prize. Jack s true motivation, however, is to uncover the truth behind The Organizers who created the deadly event.</string>
+    <string name="newsDesc6">The core of this simulation racing game is the **Simulation Mode**, where a player starts with a small amount of money, obtains a license, buys a used car, and progresses by winning races and championships to unlock over 700 vehicles and 51 tracks, including the all-new B-Spec mode.</string>
 </resources>

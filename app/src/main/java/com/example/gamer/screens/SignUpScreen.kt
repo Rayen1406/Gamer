@@ -1,5 +1,6 @@
 package com.example.gamer.screens
 
+import android.graphics.drawable.Icon
 import android.icu.text.CaseMap
 import android.util.Patterns
 import androidx.compose.foundation.Image
@@ -21,15 +22,20 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SegmentedButtonDefaults.Icon
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,15 +57,16 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.gamer.R
 import com.example.gamer.ui.theme.GamerTheme
 import kotlinx.coroutines.launch
-import kotlin.compareTo
 
 
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUpScreen(){
+fun SignUpScreen(navController: NavController){
     // Fields
     var fullName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -112,7 +119,27 @@ fun SignUpScreen(){
         return nameErr.isEmpty() && emailErr.isEmpty() && passErr.isEmpty() && confirmPassErr.isEmpty()
     }
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) }
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+                topBar = {
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.background,
+                    titleContentColor = MaterialTheme.colorScheme.primary,
+                ),
+                title = {
+                    Text("")
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClick = { navController.popBackStack() },
+                        colors = IconButtonDefaults.iconButtonColors(
+                            contentColor = MaterialTheme.colorScheme.primary)) {
+                        Icon  (painterResource(R.drawable.baseline_chevron_left_24),
+                            contentDescription = "Back")
+                    }
+                }
+            )
+        }
     ) { paddingValues ->
 
         Box(
@@ -372,6 +399,6 @@ fun TermsAndPrivacyInline(
 @Composable
 fun SignUpScreenPreview() {
     GamerTheme {
-        SignUpScreen()
+        SignUpScreen(navController = rememberNavController())
     }
 }
