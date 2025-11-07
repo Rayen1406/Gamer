@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OTPValidationScreen(navController: NavController) {
+fun OTPValidationScreen(navController: NavController, expectedOtp: String) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
@@ -144,6 +144,6 @@ fun OTPValidationScreen(navController: NavController) {
 @Composable
 fun OTPValidationScreenPreview() {
     GamerTheme {
-        OTPValidationScreen(navController = rememberNavController())
+        OTPValidationScreen(navController = rememberNavController(), "1234")
     }
 }

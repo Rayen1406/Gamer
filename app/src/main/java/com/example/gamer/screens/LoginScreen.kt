@@ -50,14 +50,15 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.gamer.Greeting
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.gamer.R
 import com.example.gamer.ui.theme.GamerTheme
 import kotlinx.coroutines.launch
 
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavHostController) {
     var context = LocalContext.current
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -98,7 +99,7 @@ fun LoginScreen() {
                         if (!isEmail) {
                             Text(text = "Email is not valid", color = Color.Red)
                         }
-                    },
+             },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Default.Email,
@@ -106,6 +107,7 @@ fun LoginScreen() {
                         )
                     },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+
                     modifier = Modifier.fillMaxWidth(),
                     value = email,
                     onValueChange = { e ->
@@ -158,23 +160,33 @@ fun LoginScreen() {
                     visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
                 )
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(4.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 4.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Checkbox(checked = rememberme, onCheckedChange = { rememberme = !rememberme })
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Checkbox(
+                            checked = rememberme,
+                            onCheckedChange = { rememberme = it }
+                        )
+                        Text(
+                            text = "Remember me",
+                            fontSize = 15.sp,
+                            color = Color.Red,
+                            modifier = Modifier.padding(start = 4.dp)
+                        )
+                    }
+
                     Text(
-                        text = "Remember me",
+                        text = "Forgot password?",
                         fontSize = 15.sp,
-                        modifier = Modifier.padding(start = 4.dp),
-                        color = Color.Red
-                    )
-                    Text(
-                        text = "Forgot password ?", fontSize = 15.sp,
-                        modifier = Modifier.padding(start = 4.dp),
-                        color = Color.Red
+                        color = Color.Red,
+                        textDecoration = TextDecoration.Underline // optional, makes it look like a link
                     )
                 }
+
                 Button(
                     onClick = {
                         //isEmail = valedateEmail(email)
@@ -231,6 +243,7 @@ fun LoginScreen() {
                             contentDescription = "Facebook Icon"
                         )
                         Spacer(modifier = Modifier.width(8.dp))
+
                         Text("Facebook")
                     }
                     Button(
@@ -262,26 +275,35 @@ fun LoginScreen() {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 50.dp),
+                    .padding(bottom = 40.dp),
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Row {
-                    Text(
-                        "Don't have an account?", color = Color.Red,
-                        fontSize = 16.sp
-                    )
-
-                }
-                TextButton(
-                    onClick = {/*TODO: navigate to register screen*/ }
+                Row (
+                    modifier = Modifier.fillMaxWidth().padding(4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        "Register Now", color = Color.Red,
-                        textDecoration = TextDecoration.Underline,
-                        fontSize = 16.sp
+                        "Don't have an account?", color = Color.Red,
+                        fontSize = 15.sp
                     )
+                    TextButton(
+                        onClick = {
+                            navController.navigate("signup")
+                        }
+                    ) {
+                        Text(
+                            "Register Now",
+                            color = Color.Red,
+                            textDecoration = TextDecoration.Underline,
+                            fontSize = 15.sp,
+
+                        )
+                    }
+
                 }
+
 
             }
 
@@ -326,6 +348,6 @@ fun ScaffoldSnackbarDemo() {
 @Composable
 fun LoginScreenPreview() {
     GamerTheme {
-        LoginScreen()
+        LoginScreen(navController = rememberNavController())
     }
 }
